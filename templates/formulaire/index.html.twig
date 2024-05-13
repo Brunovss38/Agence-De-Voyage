@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formulaire index{% endblock %}
+
+{% block body %}
+    <h1>Formulaire index</h1>
+
+    <tableclass="table table-hover p-3">
+        <thead class="table">
+            <tr>
+                <th>Id</th>
+                <th>NombreDePlace</th>
+                <th>Message</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for formulaire in formulaires %}
+            <tr>
+                <td>{{ formulaire.id }}</td>
+                <td>{{ formulaire.NombreDePlace }}</td>
+                <td>{{ formulaire.Message }}</td>
+                <td>
+                    <a href="{{ path('app_formulaire_show', {'id': formulaire.id}) }}"class="btn btn-warning" style="--bs-btn-padding-y: .15rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .75rem;">show</a>
+                    <a href="{{ path('app_formulaire_edit', {'id': formulaire.id}) }}"class="btn btn-secondary" style="--bs-btn-padding-y: .15rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .75rem;">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_formulaire_new') }}"class="btn btn-primary">Nouveau Formulaire</a>
+{% endblock %}
